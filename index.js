@@ -6,10 +6,10 @@ const express = require('express');
 // App instance of express module and json-web
 const app = express();
 const bodyParser = require('body-parser');
-const jwt = require('json-web-token');
 
 // Router Instances
 const authenticationRouter = require('./controllers/authenticationRouter');
+const userRouter = require('./controllers/userRouter');
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*"); 
@@ -24,9 +24,9 @@ app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }))
 
 // Future Routers for server
-// app.use('/users', userRouter)
 // app.use('/images', imageRouter)
 // app.use('/upload',uploadRouter);
+app.use('/users', userRouter)
 app.use('/authentication', authenticationRouter);
 
 
