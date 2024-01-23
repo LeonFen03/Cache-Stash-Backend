@@ -8,6 +8,18 @@ const bcrypt = require('bcrypt')
 
 mongoose.connect(process.env.MONGO_URI);
 
+
+userRouter.get('/', (req,res,next) => {
+    usersDB.find().then((user) => {
+        res.status(200).send(user);
+    })
+    .catch((err) => {
+        console.log(err)
+        res.status(404).send({ status:404, response:'Not found'});
+    })
+    
+});
+
 userRouter.get('/clear', (req,res,next) => {
     usersDB.deleteMany({})
     .then(() => {
