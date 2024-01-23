@@ -71,3 +71,6 @@ imageRouter.delete('/:id', (req,res,next) => {
     })
 
 })
+
+
+module.exports = imageRouter;

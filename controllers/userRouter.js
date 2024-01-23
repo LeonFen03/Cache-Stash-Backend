@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const userRouter = express.Router();
 const mongoose = require('mongoose');
-const usersDB = require('../models/users');
+const usersDB = require('../models/UserAuthenticationModel');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt')
 
