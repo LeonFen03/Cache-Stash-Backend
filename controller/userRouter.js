@@ -30,3 +30,20 @@ userRouter.delete('/:id', (req,res,next) => {
     })
 
 })
+
+userRouter.post('/', async (req,res,next) => {
+    const {password, ...userData} = req.body;
+    const id = new mongoose.Types.ObjectId();
+    usersDB.create({
+        _id: id,
+        ...userData,
+        role:'user',
+        passwordDigest: await bcrypt.hash(password,10)
+    }).then(() => {
+        res.redirect('/users')
+    })
+    .catch((err) => {
+      res.status(400).send({})
+    })
+
+})
