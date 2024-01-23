@@ -26,3 +26,14 @@ async function deleteImageFromS3(bucketName, objectKey) {
         throw err;
     }
 }
+
+imageRouter.post('/', (req,res,next) => {
+    imageDB.find({user_id: req.body.user_id}).then((images) => {
+        res.status(200).send(images);
+    })
+    .catch((err) => {
+        console.log(err)
+        res.status(404).send({ status:404, response:'Not found'});
+    })
+    
+});
