@@ -39,3 +39,4 @@ authenticationRouter.get('/profile', async (req, res) => {
     }
 })
 
+module.exports = authenticationRouter;
