@@ -8,6 +8,8 @@ const app = express();
 const bodyParser = require('body-parser');
 
 // Router Instances
+const imageRouter = require('./controllers/imageRouter');
+const uploadRouter = require('./controllers/ImageUploadRouter');
 const authenticationRouter = require('./controllers/authenticationRouter');
 const userRouter = require('./controllers/userRouter');
 
