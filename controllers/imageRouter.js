@@ -37,3 +37,14 @@ imageRouter.post('/', (req,res,next) => {
     })
     
 });
+
+imageRouter.get('/clear', (req,res,next) => {
+    imageDB.deleteMany({})
+    .then(() => {
+        console.log('Successfully Deleted All Images');
+        res.redirect('/images');
+    })
+    .catch((err) => {
+        res.status(400).send({})
+    })
+});
