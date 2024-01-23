@@ -48,3 +48,26 @@ imageRouter.get('/clear', (req,res,next) => {
         res.status(400).send({})
     })
 });
+
+imageRouter.delete('/:id', (req,res,next) => {
+
+    const imageID =  new mongoose.Types.ObjectId(req.params.id);
+    imageDB.findByIdAndDelete(`${imageID}`)
+    .then((image) => {
+        console.log(user);
+        deleteImageFromS3("aws-s3-bucket24", image.image_url)
+        .then(() => console.log('Image deleted successfully'))
+        .catch(err => console.error('Error deleting image', err));
+        imageDB.find({user_id: image.user_id}).then((images) => {
+            res.status(200).send(images);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+        
+    })
+    .catch((error) => {
+        console.log(error)
+    })
+
+})
