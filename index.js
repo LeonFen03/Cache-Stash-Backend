@@ -24,8 +24,8 @@ app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }))
 
 // Future Routers for server
-// app.use('/images', imageRouter)
-// app.use('/upload',uploadRouter);
+app.use('/images', imageRouter)
+app.use('/upload',uploadRouter);
 app.use('/users', userRouter)
 app.use('/authentication', authenticationRouter);
 
