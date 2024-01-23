@@ -18,3 +18,15 @@ userRouter.get('/clear', (req,res,next) => {
         res.status(400).send({})
     })
 });
+
+userRouter.delete('/:id', (req,res,next) => {
+    const userID =  new mongoose.Types.ObjectId(req.params.id);
+    usersDB.findByIdAndDelete(`${userID}`)
+    .then(() => {
+        res.redirect('/users');
+    })
+    .catch(() => {
+        res.status(400).send({})
+    })
+
+})
