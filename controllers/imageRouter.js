@@ -11,3 +11,18 @@ const s3Client = new S3Client({
         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
     }
 });
+
+async function deleteImageFromS3(bucketName, objectKey) {
+    try {
+        const deleteParams = {
+            Bucket: bucketName,
+            Key: objectKey
+        };
+
+        await s3Client.send(new DeleteObjectCommand(deleteParams));
+        console.log(`File deleted successfully: ${objectKey}`);
+    } catch (err) {
+        console.error("Error", err);
+        throw err;
+    }
+}
